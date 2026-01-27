@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">EECS4443Lab</string>
+    <string name="course_name">EECS 4443 Lab 1</string>
+    <string name="group_name">By: Group 8</string>
+    <string name="username_text">Username:</string>
+    <string name="password_text">Password:</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
+    <string name="title_activity_register">Register</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="RememberMe_text"> "Remember me" </string>
 </resources>
