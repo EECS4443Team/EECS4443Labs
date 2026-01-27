@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EECS4443Lab</string>
+    <string name="course_name">EECS 4443 Lab 1</string>
+    <string name="group_name">By: Group 8</string>
+    <string name="username_text">Username:</string>
+    <string name="password_text">Password:</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
 </resources>
