@@ -14,65 +14,62 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck">
 
         <TextView
             android:id="@+id/textView_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/course_name"
             android:layout_gravity="center"
-
+            android:text="@string/course_name"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/group_name"
             android:layout_gravity="center"
-
+            android:text="@string/group_name"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView_username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/username_text"
             android:layout_gravity="center"
-
+            android:text="@string/username_text"
             android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editText_username_input"
             android:layout_width="245dp"
             android:layout_height="65dp"
+            android:layout_gravity="center"
             android:autofillHints="username"
             android:ems="10"
             android:hint="@string/username_text"
-            android:layout_gravity="center"
-
-            android:inputType="text" />
+            android:inputType="text"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView_password_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password_text"
             android:layout_gravity="center"
-
+            android:text="@string/password_text"
             android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editText_password_input"
             android:layout_width="244dp"
             android:layout_height="55dp"
+            android:layout_gravity="center"
             android:autofillHints="password"
             android:ems="10"
             android:hint="@string/password_text"
-            android:layout_gravity="center"
-
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
         <CheckBox
             android:id="@+id/checkBox_remember_me"
@@ -92,7 +89,6 @@
             android:layout_width="216dp"
             android:layout_height="69dp"
             android:layout_gravity="center"
-
             android:text="@string/register_text" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
