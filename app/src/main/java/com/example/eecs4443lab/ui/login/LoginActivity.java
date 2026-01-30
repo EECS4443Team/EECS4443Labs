@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,31 +25,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eecs4443lab.R;
+import com.example.eecs4443lab.databinding.ActivityMainBinding;
+import com.example.eecs4443lab.databinding.ViewPasswordBinding;
+import com.example.eecs4443lab.ui.login.LoginViewModel;
+import com.example.eecs4443lab.ui.login.LoginViewModelFactory;
 import com.example.eecs4443lab.databinding.ActivityRegisterBinding;
+import com.example.eecs4443lab.util.TextMaskToggleUtil;
 
-public class Register extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    private ActivityMainBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.eecs4443lab.databinding.ActivityRegisterBinding binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         try {
-        setContentView(binding.getRoot());
-
+            setContentView(binding.getRoot());
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
+        ViewPasswordBinding passwordBinding = binding.passwordView;
         final EditText usernameEditText = binding.usernameView.editTextUsernameInput;
-        final EditText passwordEditText = binding.passwordView.editTextPasswordInput;
-        final Button loginButton = binding.login;
+        final EditText passwordEditText = passwordBinding.editTextPasswordInput;
+        final Button loginButton = binding.buttonLogin;
         final ProgressBar loadingProgressBar = binding.loading;
+        final Button registerButton = binding.buttonRegister;
+
+        TextMaskToggleUtil.attach(
+                passwordBinding.editTextPasswordInput,
+                passwordBinding.ivPasswordToggle
+        );
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -102,9 +116,8 @@ public class Register extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
 
-        //error
+        usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
@@ -120,16 +133,24 @@ public class Register extends AppCompatActivity {
 
         if (loginButton != null) {
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString());
+                }
+            });
+        }
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+            public void onClick(View view) {
+                Intent intent = new Intent (LoginActivity.this, Register.class);
+                startActivity(intent);
             }
         });
     }
-        }
+
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
