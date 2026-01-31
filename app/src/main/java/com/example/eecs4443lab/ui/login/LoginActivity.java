@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -24,31 +23,29 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eecs4443lab.HomeActivity;
 import com.example.eecs4443lab.R;
 import com.example.eecs4443lab.databinding.ActivityMainBinding;
 import com.example.eecs4443lab.databinding.ViewPasswordBinding;
-import com.example.eecs4443lab.ui.login.LoginViewModel;
-import com.example.eecs4443lab.ui.login.LoginViewModelFactory;
-import com.example.eecs4443lab.databinding.ActivityRegisterBinding;
+import com.example.eecs4443lab.ui.register.RegisterActivity;
 import com.example.eecs4443lab.util.TextMaskToggleUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private ActivityMainBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.eecs4443lab.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         try {
             setContentView(binding.getRoot());
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(getApplicationContext()))
                 .get(LoginViewModel.class);
         ViewPasswordBinding passwordBinding = binding.passwordView;
         final EditText usernameEditText = binding.usernameView.editTextUsernameInput;
@@ -63,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         );
 
 
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
+        loginViewModel.getLoginFormState().observe(this, new Observer<>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
@@ -79,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
+        loginViewModel.getLoginResult().observe(this, new Observer<>() {
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
                 if (loginResult == null) {
@@ -91,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+
                 }
                 setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
-                finish();
+
             }
         });
 
@@ -119,35 +116,26 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
+        passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                loginViewModel.login(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());
             }
+            return false;
         });
 
-        if (loginButton != null) {
 
-            loginButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loadingProgressBar.setVisibility(View.VISIBLE);
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
+
+            loginButton.setOnClickListener(v -> {
+                loadingProgressBar.setVisibility(View.VISIBLE);
+                loginViewModel.login(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());
+
             });
-        }
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (LoginActivity.this, Register.class);
-                startActivity(intent);
-            }
+
+        registerButton.setOnClickListener(view -> {
+            Intent intent = new Intent (LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -156,6 +144,11 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        intent.putExtra("username",
+                model.getDisplayName());
+        startActivity(intent);
+        finish();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
