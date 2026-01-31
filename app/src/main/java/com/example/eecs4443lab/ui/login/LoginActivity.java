@@ -51,12 +51,13 @@ public class LoginActivity extends AppCompatActivity {
         final Button registerButton = binding.buttonRegister;
         final Button cancelButton = binding.button;
 
+        // Attaches password visibility toggle (eye icon)
         TextMaskToggleUtil.attach(
                 passwordBinding.editTextPasswordInput,
                 passwordBinding.ivPasswordToggle
         );
 
-
+        // Observes form validation state and updates UI errors + login button enabled state
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
                 return;
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Observes login result and handles success/failure UI flow
         loginViewModel.getLoginResult().observe(this, loginResult -> {
             if (loginResult == null) {
                 return;
@@ -79,14 +81,15 @@ public class LoginActivity extends AppCompatActivity {
                 showLoginFailed(loginResult.getError());
             }
             if (loginResult.getSuccess() != null) {
+                // Navigates to Home screen on successful login
                 updateUiWithUser(loginResult.getSuccess());
 
             }
+            // Marks this activity result as OK for callers
             setResult(Activity.RESULT_OK);
-
-
         });
 
+        // Validates input whenever user edits username/password
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // Updates ViewModel with latest input for validation
                 loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
@@ -107,6 +111,8 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
+
+        // Triggers login when keyboard "Done" is pressed on password field
         passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 loginViewModel.login(usernameEditText.getText().toString(),
@@ -115,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-
+        // Clears inputs and resets UI state
         cancelButton.setOnClickListener(v -> {
             usernameEditText.setText("");
             passwordEditText.setText("");
@@ -128,20 +134,21 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+        // Starts login process and shows loading indicator
         loginButton.setOnClickListener(v -> {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
 
             });
-
+        // Navigates to Register screen
         registerButton.setOnClickListener(view -> {
             Intent intent = new Intent (LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
     }
 
-
+    // Shows welcome message and navigates to HomeActivity with username extra
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
@@ -152,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
+    // Displays login failure message
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }

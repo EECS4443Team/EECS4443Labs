@@ -14,15 +14,18 @@ public class TextMaskToggleUtil {
     public static void attach(EditText editText, ImageView toggleIcon) {
 
         toggleIcon.setOnClickListener(v -> {
+            // Checks whether the password is currently masked
             boolean isMasked =
                     editText.getTransformationMethod()
                             instanceof PasswordTransformationMethod;
 
             if (isMasked) {
+                // Shows the password text
                 editText.setTransformationMethod(
                         HideReturnsTransformationMethod.getInstance());
                 toggleIcon.setImageResource(R.drawable.baseline_visibility_24);
             } else {
+                // Masks the password text
                 editText.setTransformationMethod(
                         PasswordTransformationMethod.getInstance());
                 toggleIcon.setImageResource(R.drawable.baseline_visibility_off_24);

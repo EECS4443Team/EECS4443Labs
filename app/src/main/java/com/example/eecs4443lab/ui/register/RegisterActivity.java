@@ -23,16 +23,22 @@ public class RegisterActivity extends AppCompatActivity {
         ActivityRegisterBinding binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        assert binding.usernameView != null;
         final EditText usernameEditText = binding.usernameView.editTextUsernameInput;
+        assert binding.passwordView != null;
         final EditText passwordEditText = binding.passwordView.editTextPasswordInput;
         final View registerButton = binding.buttonRegister;
         final ProgressBar loadingProgressBar = binding.loading;
 
+        // Creates credential store for file-based registration
         final CredentialStore store = new CredentialStore(getApplicationContext());
+        // Attaches password visibility toggle (eye icon)
         TextMaskToggleUtil.attach(
                 binding.passwordView.editTextPasswordInput,
                 binding.passwordView.ivPasswordToggle
         );
+        // Handles register button click and writes credentials to internal file
+        assert registerButton != null;
         registerButton.setOnClickListener(v -> {
             loadingProgressBar.setVisibility(View.VISIBLE);
 
@@ -41,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
             try {
+                // Attempts to register
                 store.register(username, password);
                 Toast.makeText(getApplicationContext(), "Registered!", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
