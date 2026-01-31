@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void ensureCredentialFile(Context context) {
         File outFile = new File(context.getFilesDir(), "loginCredential.txt");
-        if (outFile.exists()) return; // 이미 있으면 복사 안 함
+        if (outFile.exists()) return; // Prevent duplicates
 
         try (InputStream in = context.getAssets().open("loginCredential.txt");
              OutputStream out = new FileOutputStream(outFile)) {
