@@ -1,0 +1,30 @@
+<resources>
+    <dimen name="screen_padding_horizontal">32dp</dimen>
+    <dimen name="screen_padding_vertical">32dp</dimen>
+
+    <dimen name="form_container_width">640dp</dimen>
+
+    <dimen name="title_text_size">28sp</dimen>
+    <dimen name="subtitle_text_size">24sp</dimen>
+    <dimen name="title_subtitle_spacing">8dp</dimen>
+
+    <dimen name="section_spacing_medium">16dp</dimen>
+    <dimen name="section_spacing_large">28dp</dimen>
+
+    <dimen name="form_label_text_size">24sp</dimen>
+    <dimen name="form_field_width">520dp</dimen>
+    <dimen name="form_field_height">72dp</dimen>
+    <dimen name="form_section_margin_top">0dp</dimen>
+    <dimen name="form_field_spacing_vertical">16dp</dimen>
+
+    <dimen name="password_toggle_size">48dp</dimen>
+    <dimen name="password_toggle_padding">12dp</dimen>
+
+    <dimen name="button_small_width">140dp</dimen>
+    <dimen name="button_small_height">56dp</dimen>
+
+    <dimen name="button_primary_width">300dp</dimen>
+    <dimen name="button_primary_height">78dp</dimen>
+
+    <dimen name="progress_size">56dp</dimen>
+</resources>
