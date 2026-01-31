@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar loadingProgressBar = binding.loading;
         final Button registerButton = binding.buttonRegister;
         final Button cancelButton = binding.button;
+        final CheckBox rememberMeCheckbox = binding.checkBoxRememberMe;
 
         // Attaches password visibility toggle (eye icon)
         TextMaskToggleUtil.attach(
@@ -83,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
             if (loginResult.getSuccess() != null) {
                 // Navigates to Home screen on successful login
                 updateUiWithUser(loginResult.getSuccess());
-
             }
             // Marks this activity result as OK for callers
             setResult(Activity.RESULT_OK);
