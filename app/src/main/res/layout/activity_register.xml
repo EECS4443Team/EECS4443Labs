@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/screen_padding_horizontal"
     android:paddingVertical="@dimen/screen_padding_vertical"
     android:id="@+id/container"
-        tools:context=".ui.login.Register">
+        tools:context=".ui.register.RegisterActivity">
 
     <LinearLayout
         android:layout_width="@dimen/form_container_width"
@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/section_spacing_medium"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_register"
             android:layout_width="@dimen/button_primary_width"
             android:layout_height="@dimen/button_primary_height"
             android:layout_marginTop="@dimen/section_spacing_large"
