@@ -31,7 +31,7 @@ public class TextMaskToggleUtil {
                 toggleIcon.setImageResource(R.drawable.baseline_visibility_off_24);
             }
 
-            //Set the cursor loation to the end of the text
+            //Set the cursor location to the end of the text
             editText.setSelection(editText.getText().length());
         });
     }
