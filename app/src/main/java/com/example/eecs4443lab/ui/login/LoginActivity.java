@@ -4,7 +4,9 @@ import android.app.Activity;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.StringRes;
@@ -34,6 +36,17 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(getApplicationContext()))
+                .get(LoginViewModel.class);
+
+        // Declare sharedPreferences
+        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+
+        // Check if sharedPreferences has stored values - if so, go straight to welcome page
+        if (prefs.getBoolean("loggedIn", false)) {
+            loginViewModel.login(prefs.getString("username", "aaaa"),
+                    prefs.getString("password", "bbbb"));
+        }
 
         com.example.eecs4443lab.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         try {
@@ -42,8 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(getApplicationContext()))
-                .get(LoginViewModel.class);
+
         ViewPasswordBinding passwordBinding = binding.passwordView;
         final EditText usernameEditText = binding.usernameView.editTextUsernameInput;
         final EditText passwordEditText = passwordBinding.editTextPasswordInput;
@@ -83,6 +95,12 @@ public class LoginActivity extends AppCompatActivity {
                 showLoginFailed(loginResult.getError());
             }
             if (loginResult.getSuccess() != null) {
+                // Check if remember me is checked, use sharedPreferences to store login for remember me
+                if (rememberMeCheckbox.isChecked()) {
+                    prefs.edit().putBoolean("loggedIn", true).apply();
+                    prefs.edit().putString("username", loginResult.getSuccess().getDisplayName()).apply();
+                    prefs.edit().putString("password", passwordEditText.getText().toString()).apply();
+                }
                 // Navigates to Home screen on successful login
                 updateUiWithUser(loginResult.getSuccess());
             }
