@@ -9,6 +9,6 @@ This repository is for EECS 4443 W2026 Lab 01 - Simple Login Interface.
 ## Team Contributions
 | Team Member        | Contributions | 
 |--------------------|------------------|
-| **Jorel Louie Chim** | Login, Register, Improved UI Consistency based on screen width, Backend(Remember Me)      |
+| **Jorel Louie Chim** | Login, Register, Backend(Remember Me)      |
 | **Shivraj Banwait** | Login, Register, Backend(Remember Me)        |
 | **Chan Woo Hwang** | Login, Register, Welcome Page, Backend(Validation, Registration)         | 
