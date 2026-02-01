@@ -12,3 +12,5 @@ This repository is for EECS 4443 W2026 Lab 01 - Simple Login Interface.
 | **Jorel Louie Chim** | Login, Register, Backend(Remember Me)      |
 | **Shivraj Banwait** | Login, Register, Backend(Remember Me)        |
 | **Chan Woo Hwang** | Login, Register, Welcome Page, Backend(Validation, Registration)         | 
+## Known Limitations
+After remember me is checked and the user is able to auto-login, since there is no "Log Out" button on the Welcome page, the user is unable to access the Login page again. This is because SharedPreferences is checked at onCreate, right after opening the main screen. SharedPreferences is never cleared through another button or action, like a logout button.
