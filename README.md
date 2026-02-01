@@ -1,4 +1,4 @@
-# EECS4443Lab
+# EECS4443 Lab 01
 This repository is for EECS 4443 W2026 Lab 01 - Simple Login Interface.
 ## Team Members
 | Full Name | Section | Student ID | Email |
