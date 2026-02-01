@@ -1,5 +1,5 @@
-# EECS4443 Labs
-This repository is for EECS 4443 W2026 Labs.
+# EECS4443 Lab 01
+This repository is for EECS 4443 W2026 Lab 01 - Simple Login Interface.
 ## Team Members
 | Full Name | Section (Lab) | Student ID | Email |
 |----------|----------|----------|----------|
@@ -9,6 +9,6 @@ This repository is for EECS 4443 W2026 Labs.
 ## Team Contributions
 | Team Member        | Contributions | 
 |--------------------|------------------|
-| **Jorel Louie Chim** |       |
-| **Shivraj Banwait** |         |
-| **Chan Woo Hwang** |         | 
+| **Jorel Louie Chim** | Login, Register, Backend(Remember Me)      |
+| **Shivraj Banwait** | Login, Register, Backend(Remember Me)        |
+| **Chan Woo Hwang** | Login, Register, Welcome Page, Backend(Validation, Registration)         | 
