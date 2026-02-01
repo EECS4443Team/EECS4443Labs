@@ -7,7 +7,6 @@ This repository is for EECS 4443 W2026 Lab 01 - Simple Login Interface.
 | **Chan Woo Hwang**  | A   | 218972539   | htry02@my.yorku.ca   |
 | **Shivraj Banwait**   | A   | 217279373   | shivrajb@my.yorku.ca   |
 ## Team Contributions
-### Lab01
 | Team Member        | Contributions | 
 |--------------------|------------------|
 | **Jorel Louie Chim** | Login, Register, Improved UI Consistency based on screen width      |
