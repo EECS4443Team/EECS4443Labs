@@ -22,5 +22,6 @@
     <string name="RememberMe_text"> "Remember me" </string>
     <string name="list">List</string>
     <string name="home">Home</string>
+    <string name="logout">Logout</string>
 
 </resources>

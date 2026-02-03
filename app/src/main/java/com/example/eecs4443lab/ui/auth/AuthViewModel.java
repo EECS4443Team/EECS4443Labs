@@ -23,6 +23,7 @@ public abstract class AuthViewModel<R> extends ViewModel {
             formState.setValue(new FormState(true));
         }
     }
+
     protected boolean isUserNameValid(String username) {
         if (username == null) return false;
         if (username.contains("@")) return Patterns.EMAIL_ADDRESS.matcher(username).matches();
@@ -31,5 +32,6 @@ public abstract class AuthViewModel<R> extends ViewModel {
     protected boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }
+
     public abstract void submit(String username, String password) throws IOException;
 }

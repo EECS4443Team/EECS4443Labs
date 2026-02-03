@@ -30,6 +30,14 @@
             android:text="@string/username_text"
             android:textAlignment="center"
             android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="@dimen/button_primary_width"
+            android:layout_height="@dimen/button_primary_height"
+            android:layout_marginTop="@dimen/section_spacing_medium"
+            android:layout_gravity="center"
+            android:text="@string/logout" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
