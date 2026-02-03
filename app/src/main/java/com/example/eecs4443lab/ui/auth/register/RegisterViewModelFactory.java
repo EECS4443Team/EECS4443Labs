@@ -1,4 +1,4 @@
-package com.example.eecs4443lab.ui.register;
+package com.example.eecs4443lab.ui.auth.register;
 
 import android.content.Context;
 
@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.eecs4443lab.data.RegisterDataSource;
+import com.example.eecs4443lab.data.RegisterRepository;
 import com.example.eecs4443lab.util.CredentialStore;
 
 public class RegisterViewModelFactory implements ViewModelProvider.Factory {
@@ -21,7 +23,7 @@ public class RegisterViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(RegisterViewModel.class)) {
-            return (T) new RegisterViewModel(new CredentialStore(appContext));
+            return (T) new RegisterViewModel(new RegisterRepository(new RegisterDataSource(new CredentialStore(appContext))));
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

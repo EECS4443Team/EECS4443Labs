@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.UUID;
 
-public class LoginDataSource implements AuthDataSource {
+public class LoginDataSource  {
 
     private final File credentialFile;
 
@@ -19,7 +19,6 @@ public class LoginDataSource implements AuthDataSource {
         this.credentialFile = new File(context.getFilesDir(), "loginCredential.txt");
     }
 
-    @Override
     public Result<LoggedInUser> login(String username, String password) {
         if (!credentialFile.exists()) {
             return new Result.Error(new IOException("No registered user (credential file not found)"));
@@ -54,7 +53,6 @@ public class LoginDataSource implements AuthDataSource {
         }
     }
 
-    @Override
     public void logout() {
         // no-op (local auth)
     }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.eecs4443lab.ui.login.LoginActivity;
+import com.example.eecs4443lab.ui.auth.login.LoginActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

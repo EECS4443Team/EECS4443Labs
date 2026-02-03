@@ -1,4 +1,4 @@
-package com.example.eecs4443lab.ui.register;
+package com.example.eecs4443lab.ui.auth.register;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;

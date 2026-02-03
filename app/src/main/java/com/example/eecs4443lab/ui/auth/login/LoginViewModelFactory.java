@@ -1,4 +1,4 @@
-package com.example.eecs4443lab.ui.login;
+package com.example.eecs4443lab.ui.auth.login;
 
 import android.content.Context;
 
