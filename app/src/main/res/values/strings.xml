@@ -20,5 +20,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="register_failed">"Register failed"</string>
     <string name="RememberMe_text"> "Remember me" </string>
+    <string name="list">List</string>
+    <string name="home">Home</string>
 
 </resources>
