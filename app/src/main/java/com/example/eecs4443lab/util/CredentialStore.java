@@ -53,7 +53,7 @@ public final class CredentialStore {
 
         // Appends new username/password pair
         appendPair(username, password);
-        return null;
+        return new Result.Success<>();
     }
 
     // Appends a username-password pair to the file

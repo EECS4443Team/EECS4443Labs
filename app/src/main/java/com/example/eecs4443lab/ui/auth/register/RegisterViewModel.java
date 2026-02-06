@@ -43,7 +43,7 @@ public class RegisterViewModel extends AuthViewModel<RegisterResult> {
         Result<Void> r = registerRepository.register(username, password);
 
         if (r instanceof Result.Success) {
-            result.setValue(new RegisterResult(true)); // 또는 success view object
+            result.setValue(new RegisterResult(true));
         } else {
             result.setValue(new RegisterResult(R.string.register_failed));
         }

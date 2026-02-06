@@ -27,6 +27,7 @@ public class Result<T> {
         public Success(T data) {
             this.data = data;
         }
+        public Success () {}
 
         public T getData() {
             return this.data;
