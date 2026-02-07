@@ -1,4 +1,4 @@
-# EECS4443 Lab 01
+# EECS4443 Lab 02
 This repository is for EECS 4443 W2026 Lab 02 - Dynamic Lists and RecyclerView.
 ## Team Members
 | Full Name | Section (Lab) | Student ID | Email |
