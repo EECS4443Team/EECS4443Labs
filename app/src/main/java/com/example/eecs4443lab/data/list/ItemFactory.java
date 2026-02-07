@@ -9,13 +9,12 @@ public class ItemFactory {
     }
 
     public Book getBook() {
-        String[] bookNames = {"Introductory Java", "Clean Code", "Effective Java"};
-        String randomName = bookNames[random.nextInt(bookNames.length)];
+
 
         return new Book(
                 nextId(),
-                randomName,
-                101, // 예시 R.drawable ID
+                "Dummy Book" + currentId,
+                101,
                 "This is an dummy book " + random.nextInt(1000),
                 "unknown author"
         );

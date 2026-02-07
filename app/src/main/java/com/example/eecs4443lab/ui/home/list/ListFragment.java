@@ -10,10 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.eecs4443lab.data.list.ItemFactory;
+import com.example.eecs4443lab.data.list.ListItem;
 import com.example.eecs4443lab.databinding.FragmentListBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ListFragment extends Fragment {
 
@@ -40,18 +43,16 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String title = "List";
-        if (getArguments() != null && getArguments().getString(ARG_TITLE) != null) {
-            title = getArguments().getString(ARG_TITLE);
-        }
-
-        List<String> items = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            items.add(title + " - item" + i);
+        ItemFactory factory = new ItemFactory();
+        List<ListItem> itemList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 20; i++) {
+            ListItem item = (random.nextInt(2) == 0) ? factory.getBook() : factory.getMovie();
+            itemList.add(item);
         }
 
         binding.recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recycler.setAdapter(new MyListAdapter(items));
+        binding.recycler.setAdapter(new MyListAdapter(itemList));
     }
 
     @Override
